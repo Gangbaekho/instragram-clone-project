@@ -12,6 +12,7 @@ import ReduxThunk from "redux-thunk";
 
 // REDUCERS
 import AuthReducer from "./store/reducer/auth";
+import FeedReducer from "./store/reducer/feed";
 
 // PAGES
 import HomePage from "./pages/HomePage";
@@ -26,6 +27,7 @@ import "./tailwind.output.css";
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
+  feed: FeedReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
