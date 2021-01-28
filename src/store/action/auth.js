@@ -9,7 +9,7 @@ export const signin = (email, password) => {
   };
 };
 
-export const signup = (email, password) => {
+export const signup = (email, password, text) => {
   return {
     type: SIGNUP,
     email,

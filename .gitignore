@@ -23,5 +23,5 @@ yarn-debug.log*s
 yarn-error.log*
 
 # security
-/src/store/action/*.js
+/src/store/action/auth.js
 
