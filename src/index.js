@@ -4,27 +4,45 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+
+// REDUX
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+
+// REDUCERS
+import AuthReducer from "./store/reducer/auth";
+
+// PAGES
+import HomePage from "./pages/HomePage";
 import ActivityPage from "./pages/ActivityPage";
 import DirectMessagePage from "./pages/DirectMessagePage";
 import ExplorePage from "./pages/ExplorePage";
-import FeedPage from "./pages/FeedPage";
 import IndividualPage from "./pages/IndividualPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
+// CSS
+import "./tailwind.output.css";
+
+const rootReducer = combineReducers({
+  auth: AuthReducer,
+});
+
+const store = createStore(rootReducer);
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" component={FeedPage} exact />
-        <Route path="/login" component={LoginPage} exact />
-        <Route path="/direct" component={DirectMessagePage} exact />
-        <Route path="/explore" component={ExplorePage} exact />
-        <Route path="/activity" component={ActivityPage} exact />
-        <Route path="/:username" component={IndividualPage} exact />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={HomePage} exact />
+          <Route path="/direct" component={DirectMessagePage} exact />
+          <Route path="/explore" component={ExplorePage} exact />
+          <Route path="/activity" component={ActivityPage} exact />
+          <Route path="/:username" component={IndividualPage} exact />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
